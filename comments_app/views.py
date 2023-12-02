@@ -1,20 +1,7 @@
-from django.shortcuts import redirect, render
-
-from .forms import CommentForm
+from rest_framework import generics
 from .models import Comment
+from .serializers import CommentSerializer
 
-
-def index(request):
-    comments = Comment.objects.filter(parent_comment__isnull=True).order_by("-created_at")
-    return render(request, "comments_app/index.html", {"comments": comments})
-
-
-def add_comment(request):
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("index")
-    else:
-        form = CommentForm()
-    return render(request, "comments_app/add_comment.html", {"form": form})
+class CommentListCreateView(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
