@@ -1,14 +1,11 @@
 from django.urls import path
 
-from .views import CommentListCreateView
-from .views import CommentListCreateAPIView
+from comments_app.views import CommentListCreateView
 
-
-app_name = 'comments_app'
+app_name = "comments_app"
 
 urlpatterns = [
-    path("api/comments/", CommentListCreateAPIView.as_view(), name='comment-list-create'),
     path("api/comments/", CommentListCreateView.as_view(), name="comment-list-create"),
-    path("comments/", CommentListCreateView.as_view(), name="comment-list-create"),
+    path("comments/", CommentListCreateView.as_view(), name="comment-list"),
     path("", CommentListCreateView.as_view(), name="home"),
 ]
