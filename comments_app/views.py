@@ -7,3 +7,5 @@ from .serializers import CommentSerializer
 class CommentListCreateView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    ordering_fields = ['created_at']  
+    ordering = ['-created_at'] 
