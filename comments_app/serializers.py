@@ -10,8 +10,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = "__all__"
         extra_kwargs = {
-            'file': {'required': False, 'allow_empty_file': True},
-            'image': {'required': False, 'allow_empty_file': True},
+            "file": {"required": False, "allow_empty_file": True},
+            "image": {"required": False, "allow_empty_file": True},
         }
 
     def get_children(self, obj):
