@@ -1,3 +1,4 @@
+from rest_framework.parsers import MultiPartParser
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -11,6 +12,7 @@ class CommentListCreateView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     ordering_fields = ["created_at"]
     ordering = ["-created_at"]
+    parser_classes = [MultiPartParser]
 
     def get_serializer_context(self):
         context = super().get_serializer_context()

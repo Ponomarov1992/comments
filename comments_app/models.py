@@ -8,6 +8,8 @@ class Comment(models.Model):
     text = models.TextField()
     parent_comment = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE, related_name="children")
     created_at = models.DateTimeField(auto_now_add=True)
+    file = models.FileField(upload_to='comment_files/', blank=True, null=True)
+    image = models.ImageField(upload_to='comment_images/', blank=True, null=True)
 
     def __str__(self):
         return self.user_name
